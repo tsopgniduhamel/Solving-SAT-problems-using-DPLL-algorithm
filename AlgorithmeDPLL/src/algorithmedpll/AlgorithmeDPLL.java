@@ -144,14 +144,12 @@ public class AlgorithmeDPLL{
                 System.out.println("Liste des clauses : " + clauses);
                 System.out.println("Le modèle est : " + modele);
                 System.out.println();
-                System.out.println("On ne peut rien vous dire car vous n'avez  pas entré d'enoncé");
-                return false;
+                return true;
             }
             else{
                 String val= concatenerClause(clauses);
                 //verifie s'il ya une clause fausse dans clauses 
                 if(testClausefausse(clauses)){
-                    System.out.println("Une clause de l'enoncé est fausse");
                     return false;
                 }
                 else{
@@ -351,7 +349,11 @@ public class AlgorithmeDPLL{
         p2.valeur = 0;
         
 	Scanner sc= new Scanner(System.in);
-	System.out.println("Entrez un nouvel enonce");
+        System.out.println("Lorsque vous entrez un enonce, notre algorithme retroune : ");
+        System.out.println("\t true si l'enoncé EST SATISFIABLE ");
+        System.out.println("\t false si l'enoncé N'EST PAS SATISFIABLE");
+	System.out.println();
+        System.out.println("Entrez un nouvel enonce");
 	String enonce= sc.nextLine();
         
         String symboles = receuillirSym(enonce);
