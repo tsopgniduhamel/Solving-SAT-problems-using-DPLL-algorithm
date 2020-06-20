@@ -27,6 +27,13 @@ class Proposition{
 }
 
 public class AlgorithmeDPLL{
+    public static ArrayList<String> afficherSymbolesSousFormeDeListe(String symboles){
+        ArrayList<String> liste = new ArrayList<>();
+        for(int i=0; i<symboles.length(); i++){
+            liste.add(Character.toString(symboles.charAt(i)));
+        }
+        return liste;
+    }
     public static String  receuillirSym(String enonce) {
         String l = "";
 	HashSet hset= new HashSet();
