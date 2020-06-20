@@ -22,7 +22,14 @@ class Proposition{
     }	
     @Override
     public String toString(){
-        return " symbole : " + this.sym + "\t valeur : " + this.valeur;
+        String s = "";
+            if(this.valeur == 1){
+                s+="VRAI";
+            }
+            if(this.valeur == 0){
+                s+="FAUX";
+            }
+        return Character.toString(sym)+" = "+s;  
     }
 }
 
@@ -144,12 +151,14 @@ public class AlgorithmeDPLL{
                 String val= concatenerClause(clauses);
                 //verifie s'il ya une clause fausse dans clauses 
                 if(testClausefausse(clauses)){
+                    System.out.println("Une clause de l'enoncé est fausse");
                     return false;
                 }
                 else{
                     p = rechercherSymbPur(val, symboles);
-                    System.out.println("Liste des symboles : "+symboles);
+                    System.out.println("Liste des symboles : "+afficherSymbolesSousFormeDeListe(symboles));
                     System.out.println("Liste des clauses : " + clauses);
+                    System.out.println("Le modèle est : " + modele);
                     System.out.println();
                     if(p.sym!='\u0000'){
                         System.out.println("On supprime le symble pur : "+p.sym);
@@ -174,6 +183,7 @@ public class AlgorithmeDPLL{
                                 s+="!"+p.sym;
                             }
                             System.out.println("On supprime la clause unitaire : "+s);
+                            System.out.println("Et on supprime aussi le symbole: <<"+Character.toString(p.sym)+">> de l'ensemble des symboles");
                         }
                         if(p.sym!='\u0000'){
                             modele.add(p);
@@ -183,11 +193,9 @@ public class AlgorithmeDPLL{
                             symboles = receuillirSym(val);
                             return dpll(liste,symboles,modele);
                         }else{
-                            System.out.println("test" +symboles);
                             Proposition p1 = new Proposition();
                             Proposition p2 = new Proposition();
                             p1.sym = symboles.charAt(0);
-                            //System.out.println("lq vqleur" +p1.sym);
                             p1.valeur = 1;
                             p2.sym = symboles.charAt(0);
                             p2.valeur = 0;
@@ -298,7 +306,6 @@ public class AlgorithmeDPLL{
                                 else{
                                     String S1= null;
                                     S1 = (liste.get(i)).substring(0,k);
-                                    System.out.println("la chaine restante est"+S1);
                                     liste.set(i,S1);
                                     i +=1;
                                 }
